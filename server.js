@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 const request = require('request');
 const app = actionssdk({debug: true});
-
+const port = process.env.PORT || 5000;
 // fulfillment code here
 app.intent('actions.intent.MAIN', (conv) => {
   conv.ask('<speak>Tweet! <break time="1"/> ' +
@@ -35,4 +35,4 @@ app.intent('actions.intent.TEXT', (conv, input) => {
   });
 });
 
-express().use(bodyParser.json(), app).listen(3000);
+express().use(bodyParser.json(), app).listen(port);
