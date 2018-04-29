@@ -12,9 +12,9 @@ app.listen(process.env.PORT || 3000, () => {
 });
 
 app.post('/api/birdsong', (req, res) => {
-  const app = actionssdk()
-  app.handleRequest(function(){
-    app.intent('actions.intent.MAIN', (conv) => {
+  const actionsSdkApp = actionssdk()
+  actionsSdkApp.handleRequest(function(){
+    actionsSdkApp.intent('actions.intent.MAIN', (conv) => {
       conv.ask('<speak>Hi! <break time="1"/> ' +
         'I can play you a birdsong ' +
         'like Blackbird. Say a bird species and I\'ll play it for you.</speak>');
