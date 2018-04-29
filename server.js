@@ -6,7 +6,7 @@ const app = dialogflow();
 
 // fulfillment code here
 app.intent('actions.intent.MAIN', (conv) => {
-  conv.ask('<speak>Hi! <break time="1"/> ' +
+  conv.ask('<speak>Tweet! <break time="1"/> ' +
     'I can play you a birdsong ' +
     'like Blackbird. Say a bird species and I\'ll play it for you.</speak>');
 });
