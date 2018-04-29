@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { dialogflow } = require('actions-on-google');
-
-const app = dialogflow();
+const {actionssdk} = require('actions-on-google');
+const request = require('request');
+const app = actionssdk({debug: true});
 
 // fulfillment code here
 app.intent('actions.intent.MAIN', (conv) => {
