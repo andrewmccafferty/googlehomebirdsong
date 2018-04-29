@@ -27,7 +27,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
 
         if (!recordings || recordings.length == 0) {
           console.log('No recordings found');
-          conv.ask('<speak>Sorry, I couldn\'t find any recordings of , ' +
+          conv.ask('Sorry, I couldn\'t find any recordings of ' +
           `${input}. `);
             return conv.close('Goodbye');
         }
@@ -36,6 +36,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
         let recordingUrl = `https://www.xeno-canto.org/${randomRecording.id}/download`;
         console.log(`Playing recording {${randomRecording.id}}`);
         conv.ask(`<speak>Here is a ${input} for you <audio src="${recordingUrl}"></audio></speak>`);
+        return conv.close('Goodbye');
   });
 });
 
