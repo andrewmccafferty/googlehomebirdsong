@@ -19,6 +19,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
   if (input === 'bye') {
     return conv.close('Goodbye!');
   }
+  conv.ask(`Hang in there, I\'m off to get you a ${input}!`);
   let url = `https://www.xeno-canto.org/api/2/recordings?query=${encodeURIComponent(input)}%20type:song`;
   return requestPromise(url).then((body) => {
     let parsedBody = JSON.parse(body);
