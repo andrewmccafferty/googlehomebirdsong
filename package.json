@@ -12,6 +12,7 @@
     "actions-on-google": "^2.0.1",
     "body-parser": "*",
     "express": "*",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
   }
 }
