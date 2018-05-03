@@ -34,8 +34,17 @@ app.intent('actions.intent.TEXT', (conv, input) => {
       
         let randomRecording = getRandomArrayElement(recordings);
         let recordingUrl = `https://www.xeno-canto.org/${randomRecording.id}/download`;
-  conv.ask(`<speak>Here is a ${input} for you, courtesy of ${randomRecording.rec} and Xeno-Canto.org <audio src="${recordingUrl}"></audio></speak>`);
-        return conv.close('That\'s all folks!');
+        conv.ask(new BasicCard({
+          text: `the recording you're listening to was recorded by ${randomRecording.rec} at ${loc} in ${cnt} on ${randomRecording.date}`, // Note the two spaces before '\n' required for
+                                       // a line break to be rendered in the card.
+          title: `${input}`,
+          buttons: new Button({
+            title: 'See full recording details on xeno-canto.org',
+            url: randomRecording.url,
+          })
+        }));
+  conv.ask(`<speak>Here is a ${input} for you, courtesy of ${randomRecording.rec} and Xeno-Canto.org <audio src="${recordingUrl}"></audio></speak>`);      
+  return conv.close('That\'s all folks!');
   });
 });
 
