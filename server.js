@@ -6,7 +6,7 @@ const app = actionssdk({debug: true});
 const port = process.env.PORT || 5000;
 // fulfillment code here
 app.intent('actions.intent.MAIN', (conv) => {
-  conv.ask('<speak><audio src="https://www.xeno-canto.org/383544/download"/><break time="1"/> ' +
+  conv.ask('<speak><audio src="https://www.xeno-canto.org/383544/download"/>' +
     'I can play you a birdsong <break time="1"/>' +
     'Say a bird species and I\'ll play it for you, or say bye to cancel</speak>');
 });
