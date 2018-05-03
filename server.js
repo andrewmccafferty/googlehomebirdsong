@@ -6,9 +6,9 @@ const app = actionssdk({debug: true});
 const port = process.env.PORT || 5000;
 // fulfillment code here
 app.intent('actions.intent.MAIN', (conv) => {
-  conv.ask('<speak>Tweet! <break time="1"/> ' +
-    'I can play you a birdsong ' +
-    'Say a bird species and I\'ll play it for you.</speak>');
+  conv.ask('<speak><audio src="https://www.xeno-canto.org/383544/download"/><break time="1"/> ' +
+    'I can play you a birdsong <break time="1"/>' +
+    'Say a bird species and I\'ll play it for you, or say bye to cancel</speak>');
 });
 
 const getRandomArrayElement = (items) => {
@@ -19,7 +19,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
   if (input === 'bye') {
     return conv.close('Goodbye!');
   }
-  let url = `https://www.xeno-canto.org/api/2/recordings?query=${encodeURIComponent(input)}%20type:song`;
+  let url = `https://www.xeno-canto.org/api/2/recordings?query=${encodeURIComponent(input)}%20type:song+cnt%3A"United+Kingdom"`;
   return requestPromise(url).then((body) => {
     let parsedBody = JSON.parse(body);
       console.log('Got response back from api');
@@ -34,9 +34,8 @@ app.intent('actions.intent.TEXT', (conv, input) => {
       
         let randomRecording = getRandomArrayElement(recordings);
         let recordingUrl = `https://www.xeno-canto.org/${randomRecording.id}/download`;
-        console.log(`Playing recording {${randomRecording.id}}`);
-        conv.ask(`<speak>Here is a ${input} for you <audio src="${recordingUrl}"></audio></speak>`);
-        return conv.close('Goodbye');
+  conv.ask(`<speak>Here is a ${input} for you, courtesy of ${randomRecording.rec} and Xeno-Canto.org <audio src="${recordingUrl}"></audio></speak>`);
+        return conv.close('That\'s all folks!');
   });
 });
 
