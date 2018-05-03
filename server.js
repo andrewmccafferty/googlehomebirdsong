@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const {actionssdk} = require('actions-on-google');
+const {actionssdk, BasicCard} = require('actions-on-google');
 const requestPromise = require('request-promise');
 const app = actionssdk({debug: true});
 const port = process.env.PORT || 5000;
