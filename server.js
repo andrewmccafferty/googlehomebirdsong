@@ -35,7 +35,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
         let randomRecording = getRandomArrayElement(recordings);
         let recordingUrl = `https://www.xeno-canto.org/${randomRecording.id}/download`;
         conv.ask(new BasicCard({
-          text: `the recording you're listening to was recorded by ${randomRecording.rec} at ${randomRecording.loc} in ${cnt} on ${randomRecording.date}`, // Note the two spaces before '\n' required for
+          text: `the recording you're listening to was recorded by ${randomRecording.rec} at ${randomRecording.loc} in ${randomRecording.cnt} on ${randomRecording.date}`, // Note the two spaces before '\n' required for
                                        // a line break to be rendered in the card.
           title: `${input}`,
           buttons: new Button({
